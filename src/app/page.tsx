@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <header className="py-8">
-        <h1 className="text-6xl font-semibold text-center text-slate-50">Chet's Blog</h1>
+        <h1 className="text-6xl font-semibold text-center text-slate-50">Chet&apos;s Blog</h1>
       </header>
       <main className="flex flex-col gap-4 items-center">
         {posts && posts.map(post => {
