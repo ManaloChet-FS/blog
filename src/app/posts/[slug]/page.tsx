@@ -6,27 +6,30 @@ import Link from "next/link";
 const md = new MarkdownIt();
 
 async function fetchPost(slug: string) {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   return posts.find((post) => post.slug === slug);
 }
 
-interface Params {
-  slug: string;
+interface PostProps {
+  params: {
+    slug: string
+  }
 }
 
 interface Post {
-  title: string;
-  date: string;
-  content: string;
+  title: string
+  date: string
+  content: string
+  desc: string
 }
 
-export default async function Post({ params }: { params: Params }) {
+export default async function Post({ params }: PostProps) {
   const post = await fetchPost(params.slug);
 
   if (!post) notFound();
 
-  const { title, date } = post;
-  const htmlConverter = md.render(post.content);
+  const { title, date, content } = post;
+  const htmlConverter = md.render(content);
 
   return (
     <article className="text-slate-50 mx-auto p-4 max-w-4xl">
