@@ -7,6 +7,7 @@ const md = new MarkdownIt();
 
 async function fetchPost(slug: string) {
   const posts = await getAllPosts();
+  // Returns the post with the matching slug
   return posts.find((post) => post.slug === slug);
 }
 
@@ -29,9 +30,12 @@ export default async function Post({ params }: PageProps) {
 
   const post = await fetchPost(slug);
 
+  // If no post is found, show the 404 page
   if (!post) notFound();
 
   const { title, date, content } = post;
+
+  // Converts markdown file to HTML
   const htmlConverter = md.render(content);
 
   return (
