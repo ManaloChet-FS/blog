@@ -15,8 +15,9 @@ interface Params {
 }
 
 interface Post {
-  title: string,
-  date: string,
+  title: string
+  date: string
+  content: string
 }
 
 export default async function Post({params}: { params: Params }) {
