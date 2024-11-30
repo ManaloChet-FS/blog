@@ -55,10 +55,3 @@ export default async function Post({ params }: PageProps) {
     </article>
   );
 }
-
-// export async function generateStaticParams() {
-//   const posts = getAllPosts();
-//   return posts.map((post) => ({
-//     params: { slug: post.slug },
-//   }));
-// }
