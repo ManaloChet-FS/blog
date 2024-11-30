@@ -10,10 +10,10 @@ async function fetchPost(slug: string) {
   return posts.find((post) => post.slug === slug);
 }
 
-interface PostProps {
-  params: {
+interface PageProps {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 interface Post {
@@ -23,8 +23,11 @@ interface Post {
   desc: string
 }
 
-export default async function Post({ params }: PostProps) {
-  const post = await fetchPost(params.slug);
+export default async function Post({ params }: PageProps) {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
+
+  const post = await fetchPost(slug);
 
   if (!post) notFound();
 
@@ -53,9 +56,9 @@ export default async function Post({ params }: PostProps) {
   );
 }
 
-export async function generateStaticParams() {
-  const posts = getAllPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+// export async function generateStaticParams() {
+//   const posts = getAllPosts();
+//   return posts.map((post) => ({
+//     params: { slug: post.slug },
+//   }));
+// }
