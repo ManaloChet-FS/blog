@@ -10,6 +10,8 @@ interface Post {
   title: string
   desc: string
   date: string
+  hero: string
+  heroAlt: string
 }
 
 export const getAllPosts = () => {
@@ -25,14 +27,16 @@ export const getAllPosts = () => {
     const fileContents = fs.readFileSync(filePath, 'utf-8');
 
     // Parses the metadata and content from the file
-    const {content, data: {title, desc, date}} = matter(fileContents);
+    const {content, data: {title, desc, date, hero, heroAlt}} = matter(fileContents);
 
     const post: Post = {
       slug,
       content,
       title,
       desc,
-      date
+      date,
+      hero,
+      heroAlt
     }
 
     return post;

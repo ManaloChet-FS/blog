@@ -9,14 +9,14 @@ export default function Home() {
       <header className="py-8">
         <h1 className="text-6xl font-semibold text-center text-slate-50">Chet&apos;s Blog</h1>
       </header>
-      <main className="flex flex-col gap-4 items-center">
+      <main className="flex flex-col gap-4 items-center pb-20">
         {posts && posts.map(post => {
           return (
             <section
               key={post.slug}
               className="w-full max-w-xl text-slate-50 bg-zinc-900 shadow-lg rounded-md p-6 border border-zinc-800"
             >
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col gap-1">
                 <h2 className="text-2xl font-semibold">{post.title}</h2>
                 <p className="text-sm">{post.date}</p>
               </div>
@@ -32,6 +32,7 @@ export default function Home() {
             </section>
           );
         })}
+        {posts && posts.length === 0 && <h4>No posts found.</h4>}
       </main>
     </>
   );

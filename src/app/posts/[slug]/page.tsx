@@ -2,6 +2,7 @@ import { getAllPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import MarkdownIt from "markdown-it";
 import Link from "next/link";
+import Image from "next/image";
 
 const md = new MarkdownIt();
 
@@ -22,6 +23,8 @@ interface Post {
   date: string
   content: string
   desc: string
+  hero: string,
+  heroAlt: string
 }
 
 export default async function Post({ params }: PageProps) {
@@ -47,10 +50,11 @@ export default async function Post({ params }: PageProps) {
         &#11164; Go back
       </Link>
       <section className="bg-zinc-900 shadow-lg p-8 rounded-lg border border-zinc-800">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col gap-2 mb-4">
           <h1 className="text-4xl font-semibold">{title}</h1>
-          <span className="text-lg">{date}</span>
+          <span className="text-sm">{date}</span>
         </div>
+        {post.hero && <Image className="rounded-lg mb-8 shadow" priority={true} src={post.hero} width={1000} height={667} alt={post.heroAlt} />}
         <div
           className="text-lg"
           dangerouslySetInnerHTML={{ __html: htmlConverter }}
