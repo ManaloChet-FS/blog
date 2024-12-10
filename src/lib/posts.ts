@@ -4,16 +4,6 @@ import matter from "gray-matter";
 
 const postsDir = path.join(process.cwd(), "src/posts");
 
-interface Post {
-  slug: string
-  content: string
-  title: string
-  desc: string
-  date: string
-  hero: string
-  heroAlt: string
-}
-
 export const getAllPosts = () => {
   // Gets the file names of every file in the posts directory
   const fileNames = fs.readdirSync(postsDir);

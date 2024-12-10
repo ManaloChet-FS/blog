@@ -2,7 +2,7 @@ import { getAllPosts } from "@/lib/posts";
 import Link from "next/link";
 
 export default function Home() {
-  const posts = getAllPosts();
+  const posts = getAllPosts().sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <>
